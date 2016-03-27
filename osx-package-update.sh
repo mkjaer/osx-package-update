@@ -2,6 +2,7 @@
 
 PROXY_SERVER=""
 CASK_DIR="/opt/homebrew-cask/Caskroom"
+CURRENT_DIR="${PWD}"
 
 function update() {
  if [[ ! -z "${PROXY_SERVER}" ]]; then
@@ -37,4 +38,11 @@ function update() {
  if [[ ! -z "$(which gem)" ]]; then
   gem update $(gem list --local | cut -f 1 -d " ")
  fi
+ if [[ ! -z "$(which npm)" ]]; then
+  npm update -g
+ fi
+
+ cd "${CURRENT_DIR}"
 }
+
+update
