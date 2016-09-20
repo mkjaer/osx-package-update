@@ -6,7 +6,7 @@ This will update packages from custom package managers and clean up afterwards.
 
 Clone this project and source `osx-package-update.sh` from your profile file.
 
-For bash (from the directory with the code): `echo "alis update=$(pwd)/osx-package-update.sh" >> ~/.bash_profile`
+For bash (from the directory with the code): `echo "alias update=$(pwd)/osx-package-update.sh" >> ~/.bash_profile`
 
 ## Configuration
 
