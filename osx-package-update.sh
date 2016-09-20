@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROXY_SERVER=""
-CASK_DIR="/opt/homebrew-cask/Caskroom"
+CASK_DIR="/usr/local/Homebrew/Caskroom/"
 CURRENT_DIR="${PWD}"
 
 function update() {
