@@ -1,15 +1,10 @@
 #!/bin/bash
 
-PROXY_SERVER=""
 CASK_DIR="/usr/local/Homebrew/Caskroom/"
 CURRENT_DIR="${PWD}"
 
 function update() {
- if [[ ! -z "${PROXY_SERVER}" ]]; then
-  local http_proxy="${PROXY_SERVER}"
-  local https_proxy="${PROXY_SERVER}"
- fi
- if [[ ! -z "$(which brew)" ]]; then
+ if [[ "$(which brew)" ]]; then
   brew update
   brew upgrade
   brew cleanup
@@ -28,14 +23,14 @@ function update() {
    fi
   done
  fi
- if [[ ! -z "$(which apm)" ]]; then
+ if [[ "$(which apm)" ]]; then
   apm update --no-confirm
   apm upgrade --no-confirm
  fi
- if [[ ! -z "$(which pip)" ]]; then
-  pip install --upgrade $(pip list --outdated | cut -f 1 -d " ") 2>/dev/null
+ if [[ "$(which pip)" ]]; then
+  pip install --upgrade $(pip list --outdated --format=legacy | cut -f 1 -d " ") 2>/dev/null
  fi
- if [[ ! -z "$(which gem)" ]]; then
+ if [[ "$(which gem)" ]]; then
   gem update $(gem list --local | cut -f 1 -d " ")
  fi
  if [[ ! -z "$(which npm)" ]]; then
