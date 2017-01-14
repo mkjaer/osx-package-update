@@ -12,8 +12,6 @@ For bash (from the directory with the code): `echo "alias update=$(pwd)/osx-pack
 
 Configuration variables are in the top of the script.
 
-If you need to set a proxy server it can be done with `PROXY_SERVER`
-
 If you're installing brew casks in a non-default folder it can be set with `CASK_DIR`
 
 ## Package support

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CASK_DIR="/usr/local/Homebrew/Caskroom/"
+CASK_DIR="${CASK_DIR:=/usr/local/Homebrew/Caskroom/}"
 CURRENT_DIR="${PWD}"
 
 function update() {
