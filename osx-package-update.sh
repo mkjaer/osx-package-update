@@ -11,17 +11,17 @@ function update() {
   brew prune
  fi
  if [[ -d "${CASK_DIR}" ]]; then
-  brew cask install $(brew cask list) 2>/dev/null
-  brew cask cleanup
-  # Delete old versions of cask
-  for folder in $(ls -d "${CASK_DIR}"/*/); do
-   cd $folder
-   if [[ $(ls | wc -l) -gt 1  ]]; then
-     echo $folder is greater than 1
-     echo "Deleting: " $(ls | sort -r | tail -n +2)
-     rm -r $(ls | sort -r | tail -n +2)
-   fi
+  for CASK in $(brew cask list); do
+    INFO=$(brew cask info $CASK | head -3)
+    CURRENT_VERSION=$(echo $INFO | head -1 | cut -d' ' -f2)
+    NEW_VERSION=$(echo ${INFO##*/} | cut -d' ' -f1)
+    if [[ "${CURRENT_VERSION}" != "${NEW_VERSION}" ]]; then
+     brew cask reinstall $CASK
+    elif [[ "${CURRENT_VERSION}" == "latest" ]]; then
+     echo "${CASK} is not using version tags, unable to determine if an update is needed. Use \`brew cask reinstall $CASK\` to manually update."
+    fi
   done
+  brew cask cleanup
  fi
  if [[ "$(which apm)" ]]; then
   apm update --no-confirm
@@ -33,7 +33,7 @@ function update() {
  if [[ "$(which gem)" ]]; then
   gem update $(gem list --local | cut -f 1 -d " ")
  fi
- if [[ ! -z "$(which npm)" ]]; then
+ if [[ "$(which npm)" ]]; then
   npm update -g
  fi
 
