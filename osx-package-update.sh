@@ -2,8 +2,10 @@
 
 CASK_DIR="${CASK_DIR:=/usr/local/Homebrew/Caskroom/}"
 CURRENT_DIR="${PWD}"
+OPTS="${1}"
 
 function update() {
+ echo $OPTS
  if [[ "$(which brew)" ]]; then
   brew update
   brew upgrade
@@ -18,7 +20,11 @@ function update() {
     if [[ "${CURRENT_VERSION}" != "${NEW_VERSION}" ]]; then
      brew cask reinstall $CASK
     elif [[ "${CURRENT_VERSION}" == "latest" ]]; then
-     echo "${CASK} is not using version tags, unable to determine if an update is needed. Use \`brew cask reinstall $CASK\` to manually update."
+     if [[ "${OPTS}" == "latest" ]]; then
+      brew cask reinstall $CASK
+     else
+      echo "${CASK} is not using version tags, unable to determine if an update is needed. Use \`brew cask reinstall $CASK\` to manually update."
+     fi
     fi
   done
   brew cask cleanup

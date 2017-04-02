@@ -8,6 +8,8 @@ Clone this project and source `osx-package-update.sh` from your profile file.
 
 For bash (from the directory with the code): `echo "alias update=$(pwd)/osx-package-update.sh" >> ~/.bash_profile`
 
+After that you can run the script with `update` or `update latest` if you want to force reinstallation of cask versions tagged *latest*
+
 ## Configuration
 
 Configuration variables are in the top of the script.
