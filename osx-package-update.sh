@@ -36,9 +36,9 @@ function update() {
  if [[ "$(which pip)" ]]; then
   pip install --upgrade $(pip list --outdated --format=legacy | cut -f 1 -d " ") 2>/dev/null
  fi
- if [[ "$(which gem)" ]]; then
-  gem update $(gem list --local | cut -f 1 -d " ")
- fi
+# if [[ "$(which gem)" ]]; then
+#  gem update $(gem list --local | cut -f 1 -d " ")
+# fi
  if [[ "$(which npm)" ]]; then
   npm update -g
  fi
