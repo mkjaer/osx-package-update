@@ -14,7 +14,7 @@ function update() {
  fi
  if [[ -d "${CASK_DIR}" ]]; then
   for CASK in $(brew cask list); do
-    INFO=$(brew cask info $CASK | head -3)
+    INFO=$(brew cask info $CASK 2>/dev/null | head -3)
     CURRENT_VERSION=$(echo $INFO | head -1 | cut -d' ' -f2)
     NEW_VERSION=$(echo ${INFO##*/} | cut -d' ' -f1)
     if [[ "${CURRENT_VERSION}" != "${NEW_VERSION}" ]]; then
